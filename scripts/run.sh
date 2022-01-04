@@ -56,9 +56,10 @@ rdma link | grep $RXE_DEV
 
 # Cargo run async-rdma
 cargo build
-timeout 3 target/debug/async-rdma -p $SRV_PORT &
+cargo test
+timeout 3 target/debug/examples/server &
 sleep 1
-target/debug/async-rdma -s $HOST_IP -p $SRV_PORT
+target/debug/examples/client
 sleep 1
 
 # Test soft-roce

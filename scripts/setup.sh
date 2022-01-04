@@ -12,12 +12,12 @@ set -o xtrace
 
 HAS_RXE_MOD=`modprobe -c | grep rxe | cat`
 
-if [ -z $HAS_RXE_MOD ]; then
+if [ -z "$HAS_RXE_MOD" ]; then
     # Load required IB and RDMA kernel modules
     sudo modprobe ib_core
     sudo modprobe rdma_ucm
 
-    export KERNEL_VERSION=5.8.18
+    export KERNEL_VERSION=5.11.20
     export KERNEL_MAJOR_VERSION=`echo $KERNEL_VERSION | cut -d '.' -f 1`
     wget --timestamping https://cdn.kernel.org/pub/linux/kernel/v$KERNEL_MAJOR_VERSION.x/linux-$KERNEL_VERSION.tar.xz
     rm -rf linux-*/ rxe/ siw/ || echo "no kernel code directory"
